@@ -105,7 +105,7 @@ public class Manetutza extends ThreadOpMode {
         bratDr.setPosition(0);
 
         cleste = hardwareMap.servo.get("cleste");
-        cleste.setPosition(0.90);
+        cleste.setPosition(1);
 
 
 
@@ -158,8 +158,8 @@ public class Manetutza extends ThreadOpMode {
             }
 
             if(gamepad2.right_trigger >= 0.5) {
-                bratSt.setPosition(0.60);
-                bratDr.setPosition(0.60);
+                bratSt.setPosition(0.83);
+                bratDr.setPosition(0.83);
             }
 
             if(gamepad2.y) {
