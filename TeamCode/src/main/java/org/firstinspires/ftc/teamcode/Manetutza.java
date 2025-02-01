@@ -43,10 +43,15 @@
 package org.firstinspires.ftc.teamcode;
 
 
+
+
+import static android.os.SystemClock.sleep;
+
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.threadopmode.TaskThread;
 import org.firstinspires.ftc.teamcode.threadopmode.ThreadOpMode;
@@ -136,21 +141,6 @@ public class Manetutza extends ThreadOpMode {
 
         // gamepad 2
         registerThread(new TaskThread(() -> {
-//            if(gamepad2.x) {
-//                brat.setPosition(0.55);
-//            }
-//
-//            if(gamepad2.right_bumper) {
-//                brat.setPosition(0.42);
-//            }
-//
-//            if(gamepad2.left_bumper) {
-//                brat.setPosition(0.028);
-//            }
-//
-//            if(gamepad2.y) {
-//                brat.setPosition(0.25);
-//            }
 
             if(gamepad2.left_bumper) {
                 bratSt.setPosition(1);
@@ -223,26 +213,34 @@ public class Manetutza extends ThreadOpMode {
         gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         gdr.setTargetPosition(1230);
         gst.setTargetPosition(1230);
+        gdr.setPower(0.5);
+        gst.setPower(0.5);
         gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         gst.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        while(gdr.isBusy() || gst.isBusy()) {
-            gdr.setPower(0.5);
-            gst.setPower(0.5);
+        while(gdr.isBusy() && gst.isBusy()) {
+            sleep(1);
         }
+        gdr.setPower(0.01);
+        gst.setPower(0.01);
     }
 
-//    public void nivel2() {
-//        gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        gdr.setTargetPosition(1900);
-//        gst.setTargetPosition(1900);
-//        gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        gst.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        while(gdr.isBusy() || gst.isBusy()) {
-//            gdr.setPower(0.5);
-//            gst.setPower(0.5);
-//        }
-//    }
+    public void nivel2() {
+        gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        gdr.setTargetPosition(2200);
+        gst.setTargetPosition(2200);
+        gdr.setPower(0.5);
+        gst.setPower(0.5);
+        gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        gst.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        while(gdr.isBusy() && gst.isBusy()) {
+            sleep(1);
+        }
+        gdr.setPower(0.01);
+        gst.setPower(0.01);
+    }
+
+
     //
     public void coborare() {
         gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
