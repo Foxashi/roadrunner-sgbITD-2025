@@ -1,4 +1,7 @@
-# Road Runner Quickstart
+# Basically the roadrunner configuration I used this FTC season (2024-2025)
 
-Check out the [docs](https://rr.brott.dev/docs/v1-0/tuning/).
+It also features a custom PIDF testing file for calibrating mechanisms based on sliders.
 
+I'll update this quite often
+
+### Pics of the current robot: soon
