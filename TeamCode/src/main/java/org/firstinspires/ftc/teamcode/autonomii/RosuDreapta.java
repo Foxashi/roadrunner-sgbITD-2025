@@ -18,7 +18,7 @@ public class RosuDreapta extends LinearOpMode {
 
     DcMotor gdr, gst; // glisiera
 
-    Servo brat, cleste;
+    Servo bratSt, bratDr, cleste;
 
     public void fata(double power) {
         fdr.setPower(power);
@@ -85,11 +85,15 @@ public class RosuDreapta extends LinearOpMode {
         gst.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
         gst.setMode(RunMode.STOP_AND_RESET_ENCODER);
 
-        brat = hardwareMap.servo.get("brat");
-        brat.setPosition(0.55);
+        bratSt = hardwareMap.servo.get("bratSt");
+        bratSt.setPosition(0);
+
+        bratDr = hardwareMap.servo.get("bratDr");
+        bratDr.setDirection(Servo.Direction.REVERSE);
+        bratDr.setPosition(0);
 
         cleste = hardwareMap.servo.get("cleste");
-        cleste.setPosition(0.45);
+        cleste.setPosition(1);
 
 
 
