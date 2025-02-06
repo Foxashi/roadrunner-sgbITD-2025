@@ -83,12 +83,14 @@ public class AlbastruStanga extends LinearOpMode {
         sdr.setPower(power);
         fst.setPower(power);
         sst.setPower(power);
+        opresteMotoare();
     }
     public void spate(double power) {
         fdr.setPower(-power);
         sdr.setPower(-power);
         fst.setPower(-power);
         sst.setPower(-power);
+        opresteMotoare();
     }
 
     public void dreapta(double power){
@@ -96,24 +98,35 @@ public class AlbastruStanga extends LinearOpMode {
         fst.setPower(power);
         sdr.setPower(power);
         sst.setPower(-power);
+        opresteMotoare();
     }
     public void stanga(double power){
         fdr.setPower(power);
         fst.setPower(-power);
         sdr.setPower(-power);
         sst.setPower(power);
+        opresteMotoare();
     }
     public void rotirestanga(double power){
         fdr.setPower(power);
         fst.setPower(-power);
         sdr.setPower(power);
         sst.setPower(-power);
+        opresteMotoare();
     }
     public void rotiredreapta(double power){
         fdr.setPower(-power);
         fst.setPower(power);
         sdr.setPower(-power);
         sst.setPower(power);
+        opresteMotoare();
+    }
+
+    public void opresteMotoare() {
+        fdr.setPower(0);
+        fst.setPower(0);
+        sdr.setPower(0);
+        sst.setPower(0);
     }
 
     public void brat_jos() {
