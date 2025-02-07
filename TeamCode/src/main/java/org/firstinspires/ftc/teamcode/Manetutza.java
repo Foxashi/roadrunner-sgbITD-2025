@@ -110,7 +110,7 @@ public class Manetutza extends ThreadOpMode {
         bratDr.setPosition(0);
 
         cleste = hardwareMap.servo.get("cleste");
-        cleste.setPosition(0.75);
+        cleste.setPosition(0.4);
 
 
 
@@ -136,6 +136,10 @@ public class Manetutza extends ThreadOpMode {
             if(gamepad2.dpad_left) {
                 nivel2();
             }
+
+            if(gamepad2.dpad_right) {
+                tractiune();
+            }
         }));
 
 
@@ -143,8 +147,8 @@ public class Manetutza extends ThreadOpMode {
         registerThread(new TaskThread(() -> {
 
             if(gamepad2.left_bumper) {
-                bratSt.setPosition(0.68);
-                bratDr.setPosition(0.68);
+                bratSt.setPosition(0.69);
+                bratDr.setPosition(0.69);
             }
 
             if(gamepad2.right_trigger >= 0.5) {
@@ -167,7 +171,7 @@ public class Manetutza extends ThreadOpMode {
             }
 
             if(gamepad2.b) {
-                cleste.setPosition(0.75);
+                cleste.setPosition(0.4);
             }
 
         }));
@@ -211,8 +215,8 @@ public class Manetutza extends ThreadOpMode {
     public void nivel1() {
         gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        gdr.setTargetPosition(1230);
-        gst.setTargetPosition(1230);
+        gdr.setTargetPosition(1200);
+        gst.setTargetPosition(1200);
         gdr.setPower(0.5);
         gst.setPower(0.5);
         gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -240,8 +244,23 @@ public class Manetutza extends ThreadOpMode {
         gst.setPower(0.01);
     }
 
+    public void tractiune() {
+        gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        gdr.setTargetPosition(1230);
+        gst.setTargetPosition(1230);
+        gdr.setPower(0.5);
+        gst.setPower(0.5);
+        gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        gst.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        while(gdr.isBusy() && gst.isBusy()) {
+            sleep(1);
+        }
+        gdr.setPower(0.01);
+        gst.setPower(0.01);
+    }
 
-    //
+
     public void coborare() {
         gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -250,8 +269,8 @@ public class Manetutza extends ThreadOpMode {
         gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         gst.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         while(gdr.isBusy() || gst.isBusy()) {
-            gdr.setPower(0.4);
-            gst.setPower(0.4);
+            gdr.setPower(0.6);
+            gst.setPower(0.6);
         }
     }
 
