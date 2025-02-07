@@ -110,7 +110,7 @@ public class Manetutza extends ThreadOpMode {
         bratDr.setPosition(0);
 
         cleste = hardwareMap.servo.get("cleste");
-        cleste.setPosition(1);
+        cleste.setPosition(0.75);
 
 
 
@@ -133,9 +133,9 @@ public class Manetutza extends ThreadOpMode {
                 coborare();
             }
 
-//            if(gamepad2.dpad_left) {
-//                nivel2();
-//            }
+            if(gamepad2.dpad_left) {
+                nivel2();
+            }
         }));
 
 
@@ -143,13 +143,13 @@ public class Manetutza extends ThreadOpMode {
         registerThread(new TaskThread(() -> {
 
             if(gamepad2.left_bumper) {
-                bratSt.setPosition(1);
-                bratDr.setPosition(1);
+                bratSt.setPosition(0.68);
+                bratDr.setPosition(0.68);
             }
 
             if(gamepad2.right_trigger >= 0.5) {
-                bratSt.setPosition(0.83);
-                bratDr.setPosition(0.83);
+                bratSt.setPosition(0.37);
+                bratDr.setPosition(0.37);
             }
 
             if(gamepad2.y) {
@@ -167,7 +167,7 @@ public class Manetutza extends ThreadOpMode {
             }
 
             if(gamepad2.b) {
-                cleste.setPosition(0);
+                cleste.setPosition(0.75);
             }
 
         }));
@@ -227,8 +227,8 @@ public class Manetutza extends ThreadOpMode {
     public void nivel2() {
         gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        gdr.setTargetPosition(2200);
-        gst.setTargetPosition(2200);
+        gdr.setTargetPosition(3300);
+        gst.setTargetPosition(3300);
         gdr.setPower(0.5);
         gst.setPower(0.5);
         gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
