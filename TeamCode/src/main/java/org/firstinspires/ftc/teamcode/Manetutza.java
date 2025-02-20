@@ -115,7 +115,6 @@ public class Manetutza extends ThreadOpMode {
 
 
         registerThread(new TaskThread(() -> {
-
             // sasiu
             sst.setPower(-(gamepad1.left_stick_y + gamepad1.left_stick_x - gamepad1.right_stick_x));
             sdr.setPower(-(gamepad1.left_stick_y - gamepad1.left_stick_x + gamepad1.right_stick_x));
@@ -151,7 +150,7 @@ public class Manetutza extends ThreadOpMode {
                 bratDr.setPosition(0.69);
             }
 
-            if(gamepad2.right_trigger >= 0.5) {
+            if(gamepad2.right_bumper) {
                 bratSt.setPosition(0.37);
                 bratDr.setPosition(0.37);
             }
@@ -161,16 +160,16 @@ public class Manetutza extends ThreadOpMode {
                 bratDr.setPosition(0.50);
             }
 
-            if(gamepad2.right_bumper) {
+            if(gamepad2.right_trigger >= 0.5) {
                 bratSt.setPosition(0);
                 bratDr.setPosition(0);
             }
 
-            if(gamepad2.a) {
+            if(gamepad2.b) {
                 cleste.setPosition(1);
             }
 
-            if(gamepad2.b) {
+            if(gamepad2.a) {
                 cleste.setPosition(0.4);
             }
 
@@ -179,7 +178,6 @@ public class Manetutza extends ThreadOpMode {
     }
     @Override
     public void mainLoop() {
-
         telemetry.addData("gdr_pos: ", gdr.getCurrentPosition());
         telemetry.addData("gst_pos: ", gst.getCurrentPosition());
         telemetry.addData("bratSt_pos: ", bratSt.getPosition());
@@ -247,8 +245,8 @@ public class Manetutza extends ThreadOpMode {
     public void tractiune() {
         gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        gdr.setTargetPosition(1230);
-        gst.setTargetPosition(1230);
+        gdr.setTargetPosition(1360);
+        gst.setTargetPosition(1360);
         gdr.setPower(0.5);
         gst.setPower(0.5);
         gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
