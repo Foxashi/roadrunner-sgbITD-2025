@@ -61,10 +61,33 @@ public class AlbastruStanga extends LinearOpMode {
         cleste.setPosition(0.4);
 
         telemetry.addLine("Gata de pornire");
+        telemetry.update();
 
         waitForStart();
 
+        if(opModeIsActive()) {
 
+            fata(0.5, 820);
+            stanga(0.5, 600);
+            nivel1();
+            sleep(1000);
+            brat_Sus();
+            sleep(1000);
+            punePeBara();
+            sleep(1000);
+            deschideCleste();
+            sleep(2000);
+            spate(0.5, 500);
+            coborare();
+            sleep(1000);
+            brat_spate();
+            sleep(1000);
+            dreapta(0.5, 2400);
+
+
+            telemetry.addLine("GataAutonomie");
+            telemetry.update();
+        }
 
     }
 
@@ -135,14 +158,27 @@ public class AlbastruStanga extends LinearOpMode {
         sst.setPower(0);
     }
 
-    public void brat_jos() {
-        bratSt.setPosition(1);
-        bratDr.setPosition(1);
+    public void brat_spate() {
+        bratSt.setPosition(0);
+        bratDr.setPosition(0);
     }
 
-    public void brat_diagonal() {
-        bratSt.setPosition(0.40);
-        bratDr.setPosition(0.40);
+    public void punePeBara() {
+        bratSt.setPosition(0.50);
+        bratDr.setPosition(0.50);
+    }
+
+    public void brat_Sus() {
+        bratSt.setPosition(0.37);
+        bratDr.setPosition(0.37);
+    }
+
+    public void deschideCleste() {
+        cleste.setPosition(1);
+    }
+
+    public void inchideCleste() {
+        cleste.setPosition(0.4);
     }
     public void nivel1() {
         gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
