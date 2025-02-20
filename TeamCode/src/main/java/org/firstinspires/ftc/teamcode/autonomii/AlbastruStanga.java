@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.autonomii;
 
+import static android.os.SystemClock.sleep;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -27,27 +29,26 @@ public class AlbastruStanga extends LinearOpMode {
 
         fdr = hardwareMap.dcMotor.get("fdr");
         fdr.setDirection(DcMotorSimple.Direction.REVERSE);
-        fdr.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
+        fdr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         sdr = hardwareMap.dcMotor.get("sdr");
         sdr.setDirection(DcMotorSimple.Direction.REVERSE);
-        sdr.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
+        sdr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         fst = hardwareMap.dcMotor.get("fst");
-        fst.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
+        fst.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         sst = hardwareMap.dcMotor.get("sst");
-        sst.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
+        sst.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         gdr = hardwareMap.dcMotor.get("gdr");
         gdr.setDirection(DcMotorSimple.Direction.REVERSE);
-        gdr.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
-        gdr.setMode(RunMode.STOP_AND_RESET_ENCODER);
-
+        gdr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        gdr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         gst = hardwareMap.dcMotor.get("gst");
-        gst.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
-        gst.setMode(RunMode.STOP_AND_RESET_ENCODER);
+        gst.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        gst.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         bratSt = hardwareMap.servo.get("bratSt");
         bratSt.setPosition(0);
@@ -57,15 +58,14 @@ public class AlbastruStanga extends LinearOpMode {
         bratDr.setPosition(0);
 
         cleste = hardwareMap.servo.get("cleste");
-        cleste.setPosition(1);
+        cleste.setPosition(0.4);
+
+        telemetry.addLine("Gata de pornire");
 
         waitForStart();
 
-        sleep(1000);
-        fata(0.4);
-        sleep(780);
-        brat_diagonal();
-        sleep(1000);
+
+
     }
 
 
@@ -78,47 +78,53 @@ public class AlbastruStanga extends LinearOpMode {
      |_|       \____/  |_| \_|  \_____|    |_|    |_____| |_____|
      ****************************************************************************************/
 
-    public void fata(double power) {
+    public void fata(double power, int time) {
         fdr.setPower(power);
         sdr.setPower(power);
         fst.setPower(power);
         sst.setPower(power);
+        sleep(time);
         opresteMotoare();
     }
-    public void spate(double power) {
+    public void spate(double power, int time) {
         fdr.setPower(-power);
         sdr.setPower(-power);
         fst.setPower(-power);
         sst.setPower(-power);
+        sleep(time);
         opresteMotoare();
     }
 
-    public void dreapta(double power){
+    public void dreapta(double power, int time){
         fdr.setPower(-power);
         fst.setPower(power);
         sdr.setPower(power);
         sst.setPower(-power);
+        sleep(time);
         opresteMotoare();
     }
-    public void stanga(double power){
+    public void stanga(double power, int time){
         fdr.setPower(power);
         fst.setPower(-power);
         sdr.setPower(-power);
         sst.setPower(power);
+        sleep(time);
         opresteMotoare();
     }
-    public void rotirestanga(double power){
+    public void rotirestanga(double power, int time){
         fdr.setPower(power);
         fst.setPower(-power);
         sdr.setPower(power);
         sst.setPower(-power);
+        sleep(time);
         opresteMotoare();
     }
-    public void rotiredreapta(double power){
+    public void rotiredreapta(double power, int time){
         fdr.setPower(-power);
         fst.setPower(power);
         sdr.setPower(-power);
         sst.setPower(power);
+        sleep(time);
         opresteMotoare();
     }
 
@@ -141,15 +147,51 @@ public class AlbastruStanga extends LinearOpMode {
     public void nivel1() {
         gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        gdr.setTargetPosition(1230);
-        gst.setTargetPosition(1230);
+        gdr.setTargetPosition(1200);
+        gst.setTargetPosition(1200);
+        gdr.setPower(0.5);
+        gst.setPower(0.5);
         gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         gst.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        while(gdr.isBusy() || gst.isBusy()) {
-            gdr.setPower(0.5);
-            gst.setPower(0.5);
+        while(gdr.isBusy() && gst.isBusy()) {
+            sleep(1);
         }
+        gdr.setPower(0.01);
+        gst.setPower(0.01);
     }
+
+    public void nivel2() {
+        gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        gdr.setTargetPosition(3300);
+        gst.setTargetPosition(3300);
+        gdr.setPower(0.5);
+        gst.setPower(0.5);
+        gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        gst.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        while(gdr.isBusy() && gst.isBusy()) {
+            sleep(1);
+        }
+        gdr.setPower(0.01);
+        gst.setPower(0.01);
+    }
+
+    public void tractiune() {
+        gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        gdr.setTargetPosition(1360);
+        gst.setTargetPosition(1360);
+        gdr.setPower(0.5);
+        gst.setPower(0.5);
+        gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        gst.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        while(gdr.isBusy() && gst.isBusy()) {
+            sleep(1);
+        }
+        gdr.setPower(0.01);
+        gst.setPower(0.01);
+    }
+
 
     public void coborare() {
         gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

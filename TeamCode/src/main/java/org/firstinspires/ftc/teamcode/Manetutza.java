@@ -267,8 +267,8 @@ public class Manetutza extends ThreadOpMode {
         gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         gst.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         while(gdr.isBusy() || gst.isBusy()) {
-            gdr.setPower(0.6);
-            gst.setPower(0.6);
+            gdr.setPower(0.4);
+            gst.setPower(0.4);
         }
     }
 
