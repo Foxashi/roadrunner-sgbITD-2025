@@ -1,12 +1,8 @@
 package org.firstinspires.ftc.teamcode.autonomii;
 
-import static android.os.SystemClock.sleep;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
-import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -14,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 //@TeleOp
 
 
-public class AlbastruStanga extends LinearOpMode {
+public class AutonomieBaraAiaBuna extends LinearOpMode {
 
     DcMotor fdr, sdr, fst, sst; // sasiu
 
@@ -67,14 +63,15 @@ public class AlbastruStanga extends LinearOpMode {
 
         if(opModeIsActive()) {
 
-            fata(0.5, 790);
+            fata(0.5, 760);
             stanga(0.5, 600);
             nivel1();
             sleep(1000);
             brat_Sus();
             sleep(1000);
             punePeBara();
-            fata(0.2, 800);
+            sleep(800);
+            fata(0.2, 900);
             deschideCleste();
             sleep(2000);
             spate(0.5, 800);
@@ -83,6 +80,7 @@ public class AlbastruStanga extends LinearOpMode {
             brat_spate();
             sleep(1000);
             dreapta(0.5, 2400);
+            spate(0.2, 400);
 
 
             telemetry.addLine("GataAutonomie");
