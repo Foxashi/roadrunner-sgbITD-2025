@@ -146,8 +146,8 @@ public class Manetutza extends ThreadOpMode {
         registerThread(new TaskThread(() -> {
 
             if(gamepad2.left_bumper) {
-                bratSt.setPosition(0.69);
-                bratDr.setPosition(0.69);
+                bratSt.setPosition(0.727);
+                bratDr.setPosition(0.727);
             }
 
             if(gamepad2.right_bumper) {
@@ -245,8 +245,8 @@ public class Manetutza extends ThreadOpMode {
     public void tractiune() {
         gdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         gst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        gdr.setTargetPosition(1360);
-        gst.setTargetPosition(1360);
+        gdr.setTargetPosition(1420);
+        gst.setTargetPosition(1420);
         gdr.setPower(0.5);
         gst.setPower(0.5);
         gdr.setMode(DcMotor.RunMode.RUN_TO_POSITION);

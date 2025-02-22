@@ -10,21 +10,14 @@ import com.qualcomm.robotcore.hardware.Servo;
 //@TeleOp
 
 
-public class AutonomieBaraAiaBuna extends LinearOpMode {
+public class AutonomieCos extends LinearOpMode {
 
-    double ticks = 537.7;
-    double newTarget;
     DcMotor fdr, sdr, fst, sst; // sasiu
 
     DcMotor gdr, gst; // glisiera
 
     Servo bratSt, bratDr, cleste;
 
-    static double WHEEL_RADIUS = 140, GEAR_RATIO = 8, TICKS_PER_REV = 383.6;
-
-    public static double encoderTicksToInches(double ticks) {
-        return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
-    }
 
 
     public void runOpMode() throws InterruptedException {
@@ -33,24 +26,16 @@ public class AutonomieBaraAiaBuna extends LinearOpMode {
         fdr = hardwareMap.dcMotor.get("fdr");
         fdr.setDirection(DcMotorSimple.Direction.REVERSE);
         fdr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        fdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         sdr = hardwareMap.dcMotor.get("sdr");
         sdr.setDirection(DcMotorSimple.Direction.REVERSE);
         sdr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        sdr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
 
         fst = hardwareMap.dcMotor.get("fst");
         fst.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        fst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
 
         sst = hardwareMap.dcMotor.get("sst");
         sst.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        sst.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-
 
         gdr = hardwareMap.dcMotor.get("gdr");
         gdr.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -78,28 +63,9 @@ public class AutonomieBaraAiaBuna extends LinearOpMode {
 
         if(opModeIsActive()) {
 
-            fata(0.5, 760);
-            sleep(1000);
-            stanga(0.5, 600);
-            nivel1();
-            sleep(1000);
-            brat_Sus();
-            sleep(1000);
-            fata(0.5, 235);
-            sleep(1000);
-            punePeBara();
-            sleep(1000);
-            fata(0.5, 200);
-            sleep(1000);
-            deschideCleste();
-            spate(0.5,900);
-            coborare();
-            sleep(1000);
-            brat_spate();
-            sleep(1000);
-            dreapta(0.5, 2400);
-            spate(0.2, 800);
-
+            dreapta(0.3, 800);
+            fata(0.5, 1000);
+            rotirestanga(0.3, 400);
 
             telemetry.addLine("GataAutonomie");
             telemetry.update();
@@ -117,16 +83,6 @@ public class AutonomieBaraAiaBuna extends LinearOpMode {
      |_|       \____/  |_| \_|  \_____|    |_|    |_____| |_____|
      ****************************************************************************************/
 
-    public void efata(int cat)
-    {
-        newTarget = ticks / cat;
-        fst.setTargetPosition((int)newTarget);
-        sst.setTargetPosition((int)newTarget);
-        fdr.setTargetPosition((int)newTarget);
-        sdr.setTargetPosition((int)newTarget);
-
-        //fst.set
-    }
     public void fata(double power, int time) {
         fdr.setPower(power);
         sdr.setPower(power);
